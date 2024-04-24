@@ -1,0 +1,640 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Хранилище PRACTIKAModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Check_">
+          <Key>
+            <PropertyRef Name="Check_ID" />
+          </Key>
+          <Property Name="Check_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID_Product" Type="int" />
+          <Property Name="ID_InfoCheck" Type="int" />
+        </EntityType>
+        <EntityType Name="CheckInfo">
+          <Key>
+            <PropertyRef Name="CheckInfo_ID" />
+          </Key>
+          <Property Name="CheckInfo_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Address_" Type="varchar" MaxLength="30" />
+          <Property Name="Price" Type="int" />
+          <Property Name="Time_" Type="time" Precision="7" />
+          <Property Name="ID_User" Type="int" />
+        </EntityType>
+        <EntityType Name="Countries">
+          <Key>
+            <PropertyRef Name="Countries_ID" />
+          </Key>
+          <Property Name="Countries_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Placename" Type="varchar" MaxLength="30" />
+        </EntityType>
+        <EntityType Name="DescriptionTour">
+          <Key>
+            <PropertyRef Name="DescriptionTour_ID" />
+          </Key>
+          <Property Name="DescriptionTour_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NumDays" Type="int" />
+          <Property Name="ID_FlightInfo" Type="int" />
+          <Property Name="ID_Countries" Type="int" />
+        </EntityType>
+        <EntityType Name="FlightInfo">
+          <Key>
+            <PropertyRef Name="FlightInfo_ID" />
+          </Key>
+          <Property Name="FlightInfo_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AirlineName" Type="varchar" MaxLength="30" />
+          <Property Name="ID_TicketType" Type="int" />
+        </EntityType>
+        <EntityType Name="Product">
+          <Key>
+            <PropertyRef Name="Product_ID" />
+          </Key>
+          <Property Name="Product_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TravelName" Type="varchar" MaxLength="30" />
+          <Property Name="TourPrice" Type="int" />
+          <Property Name="ID_DescriptionTour" Type="int" />
+        </EntityType>
+        <EntityType Name="Role_">
+          <Key>
+            <PropertyRef Name="Role_ID" />
+          </Key>
+          <Property Name="Role_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Role_type" Type="varchar" MaxLength="30" />
+        </EntityType>
+        <EntityType Name="TicketType">
+          <Key>
+            <PropertyRef Name="TicketType_ID" />
+          </Key>
+          <Property Name="TicketType_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TicketType" Type="varchar" MaxLength="30" />
+        </EntityType>
+        <EntityType Name="Tourist">
+          <Key>
+            <PropertyRef Name="Tourist_ID" />
+          </Key>
+          <Property Name="Tourist_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Num_Human" Type="varchar" MaxLength="30" />
+          <Property Name="Age_category" Type="varchar" MaxLength="30" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="ID_User" />
+          </Key>
+          <Property Name="ID_User" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name_" Type="varchar" MaxLength="30" />
+          <Property Name="Surname" Type="varchar" MaxLength="30" />
+          <Property Name="Middlename" Type="varchar" MaxLength="30" />
+          <Property Name="ID_Role" Type="int" />
+          <Property Name="Login_" Type="varchar" MaxLength="50" />
+          <Property Name="Password_" Type="varchar" MaxLength="30" />
+          <Property Name="ID_Tourist" Type="int" />
+        </EntityType>
+        <Association Name="FK__Check___ID_InfoC__5535A963">
+          <End Role="CheckInfo" Type="Self.CheckInfo" Multiplicity="0..1" />
+          <End Role="Check_" Type="Self.Check_" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CheckInfo">
+              <PropertyRef Name="CheckInfo_ID" />
+            </Principal>
+            <Dependent Role="Check_">
+              <PropertyRef Name="ID_InfoCheck" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Check___ID_Produ__5629CD9C">
+          <End Role="Product" Type="Self.Product" Multiplicity="0..1" />
+          <End Role="Check_" Type="Self.Check_" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="Product_ID" />
+            </Principal>
+            <Dependent Role="Check_">
+              <PropertyRef Name="ID_Product" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CheckInfo__ID_Us__3F466844">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="CheckInfo" Type="Self.CheckInfo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="ID_User" />
+            </Principal>
+            <Dependent Role="CheckInfo">
+              <PropertyRef Name="ID_User" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Descripti__ID_Co__4D94879B">
+          <End Role="Countries" Type="Self.Countries" Multiplicity="0..1" />
+          <End Role="DescriptionTour" Type="Self.DescriptionTour" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Countries">
+              <PropertyRef Name="Countries_ID" />
+            </Principal>
+            <Dependent Role="DescriptionTour">
+              <PropertyRef Name="ID_Countries" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Descripti__ID_Fl__4E88ABD4">
+          <End Role="FlightInfo" Type="Self.FlightInfo" Multiplicity="0..1" />
+          <End Role="DescriptionTour" Type="Self.DescriptionTour" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FlightInfo">
+              <PropertyRef Name="FlightInfo_ID" />
+            </Principal>
+            <Dependent Role="DescriptionTour">
+              <PropertyRef Name="ID_FlightInfo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__FlightInf__ID_Ti__45F365D3">
+          <End Role="TicketType" Type="Self.TicketType" Multiplicity="0..1" />
+          <End Role="FlightInfo" Type="Self.FlightInfo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TicketType">
+              <PropertyRef Name="TicketType_ID" />
+            </Principal>
+            <Dependent Role="FlightInfo">
+              <PropertyRef Name="ID_TicketType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Product__ID_Desc__5165187F">
+          <End Role="DescriptionTour" Type="Self.DescriptionTour" Multiplicity="0..1" />
+          <End Role="Product" Type="Self.Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DescriptionTour">
+              <PropertyRef Name="DescriptionTour_ID" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="ID_DescriptionTour" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Users__ID_Role__3C69FB99">
+          <End Role="Tourist" Type="Self.Tourist" Multiplicity="0..1" />
+          <End Role="Users" Type="Self.Users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tourist">
+              <PropertyRef Name="Tourist_ID" />
+            </Principal>
+            <Dependent Role="Users">
+              <PropertyRef Name="ID_Role" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Users__ID_Touris__3B75D760">
+          <End Role="Role_" Type="Self.Role_" Multiplicity="0..1" />
+          <End Role="Users" Type="Self.Users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role_">
+              <PropertyRef Name="Role_ID" />
+            </Principal>
+            <Dependent Role="Users">
+              <PropertyRef Name="ID_Role" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище PRACTIKAModelContainer">
+          <EntitySet Name="Check_" EntityType="Self.Check_" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CheckInfo" EntityType="Self.CheckInfo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Countries" EntityType="Self.Countries" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DescriptionTour" EntityType="Self.DescriptionTour" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FlightInfo" EntityType="Self.FlightInfo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Product" EntityType="Self.Product" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Role_" EntityType="Self.Role_" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TicketType" EntityType="Self.TicketType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tourist" EntityType="Self.Tourist" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Check___ID_InfoC__5535A963" Association="Self.FK__Check___ID_InfoC__5535A963">
+            <End Role="CheckInfo" EntitySet="CheckInfo" />
+            <End Role="Check_" EntitySet="Check_" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Check___ID_Produ__5629CD9C" Association="Self.FK__Check___ID_Produ__5629CD9C">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="Check_" EntitySet="Check_" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CheckInfo__ID_Us__3F466844" Association="Self.FK__CheckInfo__ID_Us__3F466844">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="CheckInfo" EntitySet="CheckInfo" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Descripti__ID_Co__4D94879B" Association="Self.FK__Descripti__ID_Co__4D94879B">
+            <End Role="Countries" EntitySet="Countries" />
+            <End Role="DescriptionTour" EntitySet="DescriptionTour" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Descripti__ID_Fl__4E88ABD4" Association="Self.FK__Descripti__ID_Fl__4E88ABD4">
+            <End Role="FlightInfo" EntitySet="FlightInfo" />
+            <End Role="DescriptionTour" EntitySet="DescriptionTour" />
+          </AssociationSet>
+          <AssociationSet Name="FK__FlightInf__ID_Ti__45F365D3" Association="Self.FK__FlightInf__ID_Ti__45F365D3">
+            <End Role="TicketType" EntitySet="TicketType" />
+            <End Role="FlightInfo" EntitySet="FlightInfo" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Product__ID_Desc__5165187F" Association="Self.FK__Product__ID_Desc__5165187F">
+            <End Role="DescriptionTour" EntitySet="DescriptionTour" />
+            <End Role="Product" EntitySet="Product" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Users__ID_Role__3C69FB99" Association="Self.FK__Users__ID_Role__3C69FB99">
+            <End Role="Tourist" EntitySet="Tourist" />
+            <End Role="Users" EntitySet="Users" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Users__ID_Touris__3B75D760" Association="Self.FK__Users__ID_Touris__3B75D760">
+            <End Role="Role_" EntitySet="Role_" />
+            <End Role="Users" EntitySet="Users" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="PRACTIKAModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Check_">
+          <Key>
+            <PropertyRef Name="Check_ID" />
+          </Key>
+          <Property Name="Check_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID_Product" Type="Int32" />
+          <Property Name="ID_InfoCheck" Type="Int32" />
+          <NavigationProperty Name="CheckInfo" Relationship="Self.FK__Check___ID_InfoC__5535A963" FromRole="Check_" ToRole="CheckInfo" />
+          <NavigationProperty Name="Product" Relationship="Self.FK__Check___ID_Produ__5629CD9C" FromRole="Check_" ToRole="Product" />
+        </EntityType>
+        <EntityType Name="CheckInfo">
+          <Key>
+            <PropertyRef Name="CheckInfo_ID" />
+          </Key>
+          <Property Name="CheckInfo_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Address_" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Price" Type="Int32" />
+          <Property Name="Time_" Type="Time" Precision="7" />
+          <Property Name="ID_User" Type="Int32" />
+          <NavigationProperty Name="Check_" Relationship="Self.FK__Check___ID_InfoC__5535A963" FromRole="CheckInfo" ToRole="Check_" />
+          <NavigationProperty Name="Users" Relationship="Self.FK__CheckInfo__ID_Us__3F466844" FromRole="CheckInfo" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="Countries">
+          <Key>
+            <PropertyRef Name="Countries_ID" />
+          </Key>
+          <Property Name="Countries_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Placename" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="DescriptionTour" Relationship="Self.FK__Descripti__ID_Co__4D94879B" FromRole="Countries" ToRole="DescriptionTour" />
+        </EntityType>
+        <EntityType Name="DescriptionTour">
+          <Key>
+            <PropertyRef Name="DescriptionTour_ID" />
+          </Key>
+          <Property Name="DescriptionTour_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NumDays" Type="Int32" />
+          <Property Name="ID_FlightInfo" Type="Int32" />
+          <Property Name="ID_Countries" Type="Int32" />
+          <NavigationProperty Name="Countries" Relationship="Self.FK__Descripti__ID_Co__4D94879B" FromRole="DescriptionTour" ToRole="Countries" />
+          <NavigationProperty Name="FlightInfo" Relationship="Self.FK__Descripti__ID_Fl__4E88ABD4" FromRole="DescriptionTour" ToRole="FlightInfo" />
+          <NavigationProperty Name="Product" Relationship="Self.FK__Product__ID_Desc__5165187F" FromRole="DescriptionTour" ToRole="Product" />
+        </EntityType>
+        <EntityType Name="FlightInfo">
+          <Key>
+            <PropertyRef Name="FlightInfo_ID" />
+          </Key>
+          <Property Name="FlightInfo_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AirlineName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="ID_TicketType" Type="Int32" />
+          <NavigationProperty Name="DescriptionTour" Relationship="Self.FK__Descripti__ID_Fl__4E88ABD4" FromRole="FlightInfo" ToRole="DescriptionTour" />
+          <NavigationProperty Name="TicketType" Relationship="Self.FK__FlightInf__ID_Ti__45F365D3" FromRole="FlightInfo" ToRole="TicketType" />
+        </EntityType>
+        <EntityType Name="Product">
+          <Key>
+            <PropertyRef Name="Product_ID" />
+          </Key>
+          <Property Name="Product_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TravelName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="TourPrice" Type="Int32" />
+          <Property Name="ID_DescriptionTour" Type="Int32" />
+          <NavigationProperty Name="Check_" Relationship="Self.FK__Check___ID_Produ__5629CD9C" FromRole="Product" ToRole="Check_" />
+          <NavigationProperty Name="DescriptionTour" Relationship="Self.FK__Product__ID_Desc__5165187F" FromRole="Product" ToRole="DescriptionTour" />
+        </EntityType>
+        <EntityType Name="Role_">
+          <Key>
+            <PropertyRef Name="Role_ID" />
+          </Key>
+          <Property Name="Role_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Role_type" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Users" Relationship="Self.FK__Users__ID_Touris__3B75D760" FromRole="Role_" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="TicketType">
+          <Key>
+            <PropertyRef Name="TicketType_ID" />
+          </Key>
+          <Property Name="TicketType_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TicketType1" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="FlightInfo" Relationship="Self.FK__FlightInf__ID_Ti__45F365D3" FromRole="TicketType" ToRole="FlightInfo" />
+        </EntityType>
+        <EntityType Name="Tourist">
+          <Key>
+            <PropertyRef Name="Tourist_ID" />
+          </Key>
+          <Property Name="Tourist_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Num_Human" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Age_category" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Users" Relationship="Self.FK__Users__ID_Role__3C69FB99" FromRole="Tourist" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="ID_User" />
+          </Key>
+          <Property Name="ID_User" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name_" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Surname" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Middlename" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="ID_Role" Type="Int32" />
+          <Property Name="Login_" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Password_" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="ID_Tourist" Type="Int32" />
+          <NavigationProperty Name="CheckInfo" Relationship="Self.FK__CheckInfo__ID_Us__3F466844" FromRole="Users" ToRole="CheckInfo" />
+          <NavigationProperty Name="Role_" Relationship="Self.FK__Users__ID_Touris__3B75D760" FromRole="Users" ToRole="Role_" />
+          <NavigationProperty Name="Tourist" Relationship="Self.FK__Users__ID_Role__3C69FB99" FromRole="Users" ToRole="Tourist" />
+        </EntityType>
+        <Association Name="FK__Check___ID_InfoC__5535A963">
+          <End Role="CheckInfo" Type="Self.CheckInfo" Multiplicity="0..1" />
+          <End Role="Check_" Type="Self.Check_" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CheckInfo">
+              <PropertyRef Name="CheckInfo_ID" />
+            </Principal>
+            <Dependent Role="Check_">
+              <PropertyRef Name="ID_InfoCheck" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Check___ID_Produ__5629CD9C">
+          <End Role="Product" Type="Self.Product" Multiplicity="0..1" />
+          <End Role="Check_" Type="Self.Check_" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="Product_ID" />
+            </Principal>
+            <Dependent Role="Check_">
+              <PropertyRef Name="ID_Product" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CheckInfo__ID_Us__3F466844">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="CheckInfo" Type="Self.CheckInfo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="ID_User" />
+            </Principal>
+            <Dependent Role="CheckInfo">
+              <PropertyRef Name="ID_User" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Descripti__ID_Co__4D94879B">
+          <End Role="Countries" Type="Self.Countries" Multiplicity="0..1" />
+          <End Role="DescriptionTour" Type="Self.DescriptionTour" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Countries">
+              <PropertyRef Name="Countries_ID" />
+            </Principal>
+            <Dependent Role="DescriptionTour">
+              <PropertyRef Name="ID_Countries" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Descripti__ID_Fl__4E88ABD4">
+          <End Role="FlightInfo" Type="Self.FlightInfo" Multiplicity="0..1" />
+          <End Role="DescriptionTour" Type="Self.DescriptionTour" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FlightInfo">
+              <PropertyRef Name="FlightInfo_ID" />
+            </Principal>
+            <Dependent Role="DescriptionTour">
+              <PropertyRef Name="ID_FlightInfo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Product__ID_Desc__5165187F">
+          <End Role="DescriptionTour" Type="Self.DescriptionTour" Multiplicity="0..1" />
+          <End Role="Product" Type="Self.Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DescriptionTour">
+              <PropertyRef Name="DescriptionTour_ID" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="ID_DescriptionTour" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__FlightInf__ID_Ti__45F365D3">
+          <End Role="TicketType" Type="Self.TicketType" Multiplicity="0..1" />
+          <End Role="FlightInfo" Type="Self.FlightInfo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TicketType">
+              <PropertyRef Name="TicketType_ID" />
+            </Principal>
+            <Dependent Role="FlightInfo">
+              <PropertyRef Name="ID_TicketType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Users__ID_Touris__3B75D760">
+          <End Role="Role_" Type="Self.Role_" Multiplicity="0..1" />
+          <End Role="Users" Type="Self.Users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role_">
+              <PropertyRef Name="Role_ID" />
+            </Principal>
+            <Dependent Role="Users">
+              <PropertyRef Name="ID_Role" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Users__ID_Role__3C69FB99">
+          <End Role="Tourist" Type="Self.Tourist" Multiplicity="0..1" />
+          <End Role="Users" Type="Self.Users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tourist">
+              <PropertyRef Name="Tourist_ID" />
+            </Principal>
+            <Dependent Role="Users">
+              <PropertyRef Name="ID_Role" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="PRACTIKAEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Check_" EntityType="Self.Check_" />
+          <EntitySet Name="CheckInfo" EntityType="Self.CheckInfo" />
+          <EntitySet Name="Countries" EntityType="Self.Countries" />
+          <EntitySet Name="DescriptionTour" EntityType="Self.DescriptionTour" />
+          <EntitySet Name="FlightInfo" EntityType="Self.FlightInfo" />
+          <EntitySet Name="Product" EntityType="Self.Product" />
+          <EntitySet Name="Role_" EntityType="Self.Role_" />
+          <EntitySet Name="TicketType" EntityType="Self.TicketType" />
+          <EntitySet Name="Tourist" EntityType="Self.Tourist" />
+          <EntitySet Name="Users" EntityType="Self.Users" />
+          <AssociationSet Name="FK__Check___ID_InfoC__5535A963" Association="Self.FK__Check___ID_InfoC__5535A963">
+            <End Role="CheckInfo" EntitySet="CheckInfo" />
+            <End Role="Check_" EntitySet="Check_" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Check___ID_Produ__5629CD9C" Association="Self.FK__Check___ID_Produ__5629CD9C">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="Check_" EntitySet="Check_" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CheckInfo__ID_Us__3F466844" Association="Self.FK__CheckInfo__ID_Us__3F466844">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="CheckInfo" EntitySet="CheckInfo" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Descripti__ID_Co__4D94879B" Association="Self.FK__Descripti__ID_Co__4D94879B">
+            <End Role="Countries" EntitySet="Countries" />
+            <End Role="DescriptionTour" EntitySet="DescriptionTour" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Descripti__ID_Fl__4E88ABD4" Association="Self.FK__Descripti__ID_Fl__4E88ABD4">
+            <End Role="FlightInfo" EntitySet="FlightInfo" />
+            <End Role="DescriptionTour" EntitySet="DescriptionTour" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Product__ID_Desc__5165187F" Association="Self.FK__Product__ID_Desc__5165187F">
+            <End Role="DescriptionTour" EntitySet="DescriptionTour" />
+            <End Role="Product" EntitySet="Product" />
+          </AssociationSet>
+          <AssociationSet Name="FK__FlightInf__ID_Ti__45F365D3" Association="Self.FK__FlightInf__ID_Ti__45F365D3">
+            <End Role="TicketType" EntitySet="TicketType" />
+            <End Role="FlightInfo" EntitySet="FlightInfo" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Users__ID_Touris__3B75D760" Association="Self.FK__Users__ID_Touris__3B75D760">
+            <End Role="Role_" EntitySet="Role_" />
+            <End Role="Users" EntitySet="Users" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Users__ID_Role__3C69FB99" Association="Self.FK__Users__ID_Role__3C69FB99">
+            <End Role="Tourist" EntitySet="Tourist" />
+            <End Role="Users" EntitySet="Users" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище PRACTIKAModelContainer" CdmEntityContainer="PRACTIKAEntities">
+          <EntitySetMapping Name="Check_">
+            <EntityTypeMapping TypeName="PRACTIKAModel.Check_">
+              <MappingFragment StoreEntitySet="Check_">
+                <ScalarProperty Name="Check_ID" ColumnName="Check_ID" />
+                <ScalarProperty Name="ID_Product" ColumnName="ID_Product" />
+                <ScalarProperty Name="ID_InfoCheck" ColumnName="ID_InfoCheck" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CheckInfo">
+            <EntityTypeMapping TypeName="PRACTIKAModel.CheckInfo">
+              <MappingFragment StoreEntitySet="CheckInfo">
+                <ScalarProperty Name="CheckInfo_ID" ColumnName="CheckInfo_ID" />
+                <ScalarProperty Name="Address_" ColumnName="Address_" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Time_" ColumnName="Time_" />
+                <ScalarProperty Name="ID_User" ColumnName="ID_User" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Countries">
+            <EntityTypeMapping TypeName="PRACTIKAModel.Countries">
+              <MappingFragment StoreEntitySet="Countries">
+                <ScalarProperty Name="Countries_ID" ColumnName="Countries_ID" />
+                <ScalarProperty Name="Placename" ColumnName="Placename" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DescriptionTour">
+            <EntityTypeMapping TypeName="PRACTIKAModel.DescriptionTour">
+              <MappingFragment StoreEntitySet="DescriptionTour">
+                <ScalarProperty Name="DescriptionTour_ID" ColumnName="DescriptionTour_ID" />
+                <ScalarProperty Name="NumDays" ColumnName="NumDays" />
+                <ScalarProperty Name="ID_FlightInfo" ColumnName="ID_FlightInfo" />
+                <ScalarProperty Name="ID_Countries" ColumnName="ID_Countries" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FlightInfo">
+            <EntityTypeMapping TypeName="PRACTIKAModel.FlightInfo">
+              <MappingFragment StoreEntitySet="FlightInfo">
+                <ScalarProperty Name="FlightInfo_ID" ColumnName="FlightInfo_ID" />
+                <ScalarProperty Name="AirlineName" ColumnName="AirlineName" />
+                <ScalarProperty Name="ID_TicketType" ColumnName="ID_TicketType" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Product">
+            <EntityTypeMapping TypeName="PRACTIKAModel.Product">
+              <MappingFragment StoreEntitySet="Product">
+                <ScalarProperty Name="Product_ID" ColumnName="Product_ID" />
+                <ScalarProperty Name="TravelName" ColumnName="TravelName" />
+                <ScalarProperty Name="TourPrice" ColumnName="TourPrice" />
+                <ScalarProperty Name="ID_DescriptionTour" ColumnName="ID_DescriptionTour" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Role_">
+            <EntityTypeMapping TypeName="PRACTIKAModel.Role_">
+              <MappingFragment StoreEntitySet="Role_">
+                <ScalarProperty Name="Role_ID" ColumnName="Role_ID" />
+                <ScalarProperty Name="Role_type" ColumnName="Role_type" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TicketType">
+            <EntityTypeMapping TypeName="PRACTIKAModel.TicketType">
+              <MappingFragment StoreEntitySet="TicketType">
+                <ScalarProperty Name="TicketType_ID" ColumnName="TicketType_ID" />
+                <ScalarProperty Name="TicketType1" ColumnName="TicketType" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tourist">
+            <EntityTypeMapping TypeName="PRACTIKAModel.Tourist">
+              <MappingFragment StoreEntitySet="Tourist">
+                <ScalarProperty Name="Tourist_ID" ColumnName="Tourist_ID" />
+                <ScalarProperty Name="Num_Human" ColumnName="Num_Human" />
+                <ScalarProperty Name="Age_category" ColumnName="Age_category" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="PRACTIKAModel.Users">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="ID_User" ColumnName="ID_User" />
+                <ScalarProperty Name="Name_" ColumnName="Name_" />
+                <ScalarProperty Name="Surname" ColumnName="Surname" />
+                <ScalarProperty Name="Middlename" ColumnName="Middlename" />
+                <ScalarProperty Name="ID_Role" ColumnName="ID_Role" />
+                <ScalarProperty Name="Login_" ColumnName="Login_" />
+                <ScalarProperty Name="Password_" ColumnName="Password_" />
+                <ScalarProperty Name="ID_Tourist" ColumnName="ID_Tourist" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="7c0212f44f844ec6a6d1e7d0e50646ae" Name="Diagram1">
+        <EntityTypeShape EntityType="PRACTIKAModel.Check_" Width="1.5" PointX="7.5" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="PRACTIKAModel.CheckInfo" Width="1.5" PointX="5.25" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="PRACTIKAModel.Countries" Width="1.5" PointX="0.75" PointY="8.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="PRACTIKAModel.DescriptionTour" Width="1.5" PointX="3" PointY="9.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="PRACTIKAModel.FlightInfo" Width="1.5" PointX="0.75" PointY="10.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="PRACTIKAModel.Product" Width="1.5" PointX="5.25" PointY="9.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="PRACTIKAModel.Role_" Width="1.5" PointX="0.75" PointY="1.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PRACTIKAModel.TicketType" Width="1.5" PointX="1.5" PointY="14" IsExpanded="true" />
+        <EntityTypeShape EntityType="PRACTIKAModel.Tourist" Width="1.5" PointX="0.75" PointY="5.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="PRACTIKAModel.Users" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <AssociationConnector Association="PRACTIKAModel.FK__Check___ID_InfoC__5535A963" ManuallyRouted="false" />
+        <AssociationConnector Association="PRACTIKAModel.FK__Check___ID_Produ__5629CD9C" ManuallyRouted="false" />
+        <AssociationConnector Association="PRACTIKAModel.FK__CheckInfo__ID_Us__3F466844" ManuallyRouted="false" />
+        <AssociationConnector Association="PRACTIKAModel.FK__Descripti__ID_Co__4D94879B" ManuallyRouted="false" />
+        <AssociationConnector Association="PRACTIKAModel.FK__Descripti__ID_Fl__4E88ABD4" ManuallyRouted="false" />
+        <AssociationConnector Association="PRACTIKAModel.FK__Product__ID_Desc__5165187F" ManuallyRouted="false" />
+        <AssociationConnector Association="PRACTIKAModel.FK__FlightInf__ID_Ti__45F365D3" ManuallyRouted="false" />
+        <AssociationConnector Association="PRACTIKAModel.FK__Users__ID_Touris__3B75D760" ManuallyRouted="false" />
+        <AssociationConnector Association="PRACTIKAModel.FK__Users__ID_Role__3C69FB99" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

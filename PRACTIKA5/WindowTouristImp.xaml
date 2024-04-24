@@ -1,0 +1,26 @@
+﻿<Window x:Class="PRACTIKA5.WindowTouristImp"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PRACTIKA5"
+        mc:Ignorable="d"
+        Title="WindowTouristImp" Height="450" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+
+        </Grid.RowDefinitions>
+        <Button Content="Назад" Grid.Row="0" Click="Button_Click"/>
+        <Button Content="Импортировать" Grid.Row="6" Click="Button_Click_1"/>
+        <DataGrid x:Name="Dtg" Grid.Row="1" Grid.RowSpan="5"/>
+
+
+    </Grid>
+</Window>
